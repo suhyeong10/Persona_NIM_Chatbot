@@ -1,0 +1,947 @@
+섹션,주제,문제,답안,난이도
+반복문,고양이 계단 오르기,"고양이가 계단을 오르는데, 매번 1칸 또는 2칸을 오를 수 있습니다. n칸짜리 계단을 오르는 모든 방법의 수를 계산하세요. (예: 3칸일 경우 1+1+1, 1+2, 2+1의 세 가지 방법이 있습니다)","n = int(input(""계단의 총 칸 수 n을 입력하세요: ""))
+
+# 초기화
+ways = [1, 1]  # 0칸과 1칸의 경우의 수
+for i in range(2, n + 1):
+    ways.append(ways[i - 1] + ways[i - 2])
+
+print(f""{n}칸을 오르는 방법의 수: {ways[n]}"")
+",중
+반복문,스스로 만드는 숫자 마방진,"홀수 n이 주어졌을 때, n x n 마방진을 만들어 출력하세요. 마방진은 각 행, 열, 대각선의 합이 같은 정사각형 배열입니다. (예: n = 3일 때 마방진 [[8, 1, 6], [3, 5, 7], [4, 9, 2]])","n = int(input(""홀수 n을 입력하세요: ""))
+
+magic_square = [[0] * n for _ in range(n)]
+i, j = 0, n // 2
+
+for num in range(1, n * n + 1):
+    magic_square[i][j] = num
+    new_i, new_j = (i - 1) % n, (j + 1) % n
+    if magic_square[new_i][new_j]:
+        i += 1
+    else:
+        i, j = new_i, new_j
+
+for row in magic_square:
+    print(row)
+",상
+반복문,중첩된 이름 피라미드,"사용자로부터 이름을 입력받고, 입력된 이름의 글자 수에 맞춰 피라미드 형태로 출력하세요. 예를 들어 이름이 ""Anna""라면 다음과 같이 출력됩니다:","name = input(""이름을 입력하세요: "")
+
+for i in range(1, len(name) + 1):
+    print(name[:i])
+",하
+반복문,랜덤 주사위 던지기 게임,"컴퓨터가 주사위를 던졌을 때, 1~6 사이의 숫자를 랜덤하게 생성하고 이를 10번 반복합니다. 숫자 6이 나올 때마다 ""성공!""을 출력하고, 마지막에 총 성공 횟수를 알려줍니다.","import random
+
+success_count = 0
+
+for _ in range(10):
+    dice_roll = random.randint(1, 6)
+    if dice_roll == 6:
+        success_count += 1
+        print(""성공!"")
+    else:
+        print(f""{dice_roll}이(가) 나왔습니다."")
+
+print(f""총 성공 횟수: {success_count}"")
+",중
+반복문,동전 잔돈 계산기,"어떤 금액이 주어졌을 때, 500원, 100원, 50원, 10원 동전으로 잔돈을 가장 적은 개수로 만들 수 있는 방법을 반복문을 사용하여 계산하세요.","amount = int(input(""금액을 입력하세요: ""))
+
+coins = [500, 100, 50, 10]
+coin_count = {}
+
+for coin in coins:
+    count = amount // coin
+    amount %= coin
+    coin_count[coin] = count
+
+for coin, count in coin_count.items():
+    print(f""{coin}원 동전: {count}개"")
+",중
+반복문,신기한 문자 회전,"사용자가 문자열을 입력하면, 문자열을 한 글자씩 오른쪽으로 회전시키며 출력하는 프로그램을 작성하세요. 예를 들어, ""hello""를 입력받으면 다음과 같이 출력됩니다:","word = input(""문자열을 입력하세요: "")
+
+for i in range(len(word)):
+    rotated_word = word[-i:] + word[:-i]
+    print(rotated_word)
+",하
+반복문,숫자 삼각형 만들기,"양의 정수 n을 입력받아, 다음과 같은 형태로 숫자 삼각형을 출력하세요. 예를 들어, n = 5일 때 다음과 같이 출력됩니다:","n = int(input(""양의 정수 n을 입력하세요: ""))
+
+for i in range(1, n + 1):
+    for j in range(1, i + 1):
+        print(j, end="""")
+    print()
+",중
+반복문,합 구하기,"사용자로부터 양의 정수 n을 입력받아, 1부터 n까지의 합을 구하는 프로그램을 작성하세요.","n = int(input(""양의 정수 n을 입력하세요: ""))
+total_sum = 0
+
+for i in range(1, n + 1):
+    total_sum += i
+
+print(f""1부터 {n}까지의 합: {total_sum}"")
+",하
+반복문,구구단 만들기,"사용자로부터 출력할 구구단의 단을 입력받아, 해당 단을 출력하세요.","dan = int(input(""출력할 구구단의 단을 입력하세요: ""))
+
+for i in range(1, 10):
+    print(f""{dan} x {i} = {dan * i}"")
+",하
+반복문,별로 트리 만들기,"사용자로부터 양의 정수 n을 입력받아, n 층의 별 트리를 출력하세요.","n = int(input(""트리의 높이를 입력하세요: ""))
+
+for i in range(1, n + 1):
+    print("" "" * (n - i) + ""*"" * (2 * i - 1))
+",중
+반복문,행운의 숫자 맞히기 게임,"컴퓨터가 1부터 100 사이의 랜덤 숫자를 하나 고릅니다. 사용자는 컴퓨터가 고른 숫자를 맞히기 위해 최대 7번의 기회를 가집니다. 사용자가 입력할 때마다 컴퓨터는 더 큰지, 더 작은지 힌트를 줍니다.","import random
+
+secret_number = random.randint(1, 100)
+attempts = 7
+
+print(""1부터 100 사이의 숫자를 맞혀보세요!"")
+
+for i in range(attempts):
+    guess = int(input(f""추측한 숫자 (남은 기회 {attempts - i}회): ""))
+    if guess < secret_number:
+        print(""더 큰 숫자입니다."")
+    elif guess > secret_number:
+        print(""더 작은 숫자입니다."")
+    else:
+        print(""축하합니다! 정답입니다!"")
+        break
+else:
+    print(f""아쉽네요! 정답은 {secret_number}였습니다."")
+",상
+반복문,추억의 숫자 야구 게임,"컴퓨터가 0부터 9까지의 숫자 중에서 서로 다른 3개의 숫자를 고릅니다. 사용자는 이 숫자들을 맞히기 위해 추측하고, 컴퓨터는 숫자가 맞았는지와 위치가 맞았는지 피드백을 줍니다.","import random
+
+# 컴퓨터가 선택한 3개의 숫자 (서로 다르게 선택)
+numbers = random.sample(range(10), 3)
+
+attempts = 0
+while True:
+    guess = input(""세 자리 숫자를 입력하세요: "")
+    guess_numbers = [int(digit) for digit in guess]
+
+    # 스트라이크와 볼 계산
+    strike = sum(1 for i in range(3) if guess_numbers[i] == numbers[i])
+    ball = sum(1 for i in range(3) if guess_numbers[i] in numbers and guess_numbers[i] != numbers[i])
+
+    attempts += 1
+    print(f""{strike} 스트라이크, {ball} 볼"")
+
+    if strike == 3:
+        print(f""축하합니다! {attempts}번 만에 맞히셨습니다!"")
+        break
+",상
+반복문,달력 그리기,"사용자가 원하는 월의 달력을 그려 보세요. 요일과 일자 순서로, 각 줄에 7일씩 나누어 표시합니다. 예를 들어, 1일이 화요일이고, 31일까지 있는 경우를 그려보세요.","start_day = int(input(""첫 번째 날의 요일을 입력하세요 (0=일요일, 6=토요일): ""))
+days = int(input(""이번 달의 일 수를 입력하세요: ""))
+
+print(""일 월 화 수 목 금 토"")
+print(""   "" * start_day, end="""")
+
+for day in range(1, days + 1):
+    print(f""{day:2}"", end="" "")
+    if (day + start_day) % 7 == 0:
+        print()
+",상
+반복문,숫자 회전판 만들기,사용자가 입력한 숫자 n을 기준으로 1부터 n까지 회전하여 반복적으로 표시합니다.,"n = int(input(""숫자 회전판 크기를 입력하세요: ""))
+
+for i in range(n):
+    for j in range(n):
+        print((i + j) % n + 1, end="" "")
+    print()
+",중
+반복문,거꾸로 구구단,"구구단을 출력하되, 9 x 9부터 시작하여 1 x 1까지 거꾸로 출력되도록 해보세요.","for i in range(9, 0, -1):
+    for j in range(9, 0, -1):
+        print(f""{i} x {j} = {i * j}"", end=""\t"")
+    print()
+",중
+변수와 타입,내 이름의 성,"변수 my_name에 자신의 이름을 넣고, 그 이름의 첫 글자를 출력해보세요.","my_name = ""민수""
+print(my_name[0])  # 첫 글자만 출력
+",하
+변수와 타입,문자열과 숫자 합치기,"변수 animal에 동물 이름을, 변수 number에 그 동물의 숫자를 저장한 후, 이 두 변수를 합쳐서 출력해보세요. 예를 들어, ""강아지 3마리"".","animal = ""강아지""
+number = 3
+print(animal + "" "" + str(number) + ""마리"")  # 문자열과 숫자 합치기
+",중
+변수와 타입,이름 바꾸기,"변수 my_name에 자신의 이름을 저장한 후, my_name을 대문자로 바꾸고 출력해보세요.","my_name = ""민수""
+print(my_name.upper())  # 대문자로 바꾸기
+",하
+변수와 타입,계산기,"변수 a와 b에 숫자를 저장한 후, a를 b로 나눈 값이 3보다 큰지 확인해보세요.","a = 9
+b = 2
+result = a / b
+",하
+변수와 타입,좋아하는 음악과 시간,"변수 favorite_song에 좋아하는 음악의 제목을, 변수 song_duration에 그 음악의 길이를 저장하고, 그 음악의 제목과 길이를 출력해보세요.","favorite_song = ""어드벤처 타임""
+song_duration = 3.5
+print(f""My favorite song is {favorite_song} and it lasts {song_duration} minutes."")
+",중
+변수와 타입,날짜를 문자열로,"변수 day에 오늘의 날짜(예: ""2024-11-14"")를 문자열로 저장하고, 그 날짜의 ""년"", ""월"", ""일""을 각각 추출하여 출력해보세","day = ""2024-11-14""
+year, month, day = day.split(""-"")  # 문자열을 '-' 기준으로 나누기
+print(f""년: {year}, 월: {month}, 일: {day}"")
+",상
+변수와 타입,전화번호 형식,"변수 phone_number에 전화번호(예: ""01012345678"")를 넣고, 그 번호를 ""010-1234-5678"" 형식으로 출력해보세요.","phone_number = ""01012345678""
+formatted_number = phone_number[:3] + ""-"" + phone_number[3:7] + ""-"" + phone_number[7:]
+print(formatted_number)
+",상
+변수와 타입,타입 확인하기,"변수 height에 자신의 키를 넣고, 그 변수의 타입을 확인해보세요.","height = 170.5
+print(type(height))
+",하
+변수와 타입,문자열 합치기,"변수 first_name에 ""김""을, last_name에 ""철수""를 넣고, 두 문자열을 합쳐서 출력해보세요","first_name = ""김""
+last_name = ""철수""
+print(first_name + last_name)
+",중
+변수와 타입,변수 타입 변환하기,"변수 num_str에 ""123""을 넣고, 이를 정수로 변환한 후 10을 더한 값을 출력해보세요.","num_str = ""123""
+num = int(num_str)  # 문자열을 정수로 변환
+print(num + 10)
+",중
+변수와 타입,숫자로 나이 계산하기,"당신은 친구에게 생일이 지난 후 몇 살이 되었는지 물어보고 싶어요. 친구의 나이는 ""12""라는 문자열로 입력되는데, 이를 숫자로 변환해 나이를 1년 더한 후 출력해 보세요.","age = ""12""
+age = int(age) + 1  # 나이를 1살 더해보자!
+print(age)
+",중
+변수와 타입,하루 일과 시간 계산하기,"하루는 24시간이죠! 8시간 동안 공부를 하고, 2시간 동안 운동을 했을 때, 그 이후 얼마나 시간이 남는지 계산해 보세요.","total_time = 24
+study_time = 8
+exercise_time = 2
+remaining_time = total_time - (study_time + exercise_time)
+print(f""남은 시간: {remaining_time}시간"")",상
+변수와 타입,택시 요금 계산하기,"택시를 타면 기본 요금은 3000원이지만, 추가로 1km당 1000원의 요금이 붙어요. 3km를 탔다면 택시 요금을 계산해 보세요.","base_fare = 3000
+extra_fare_per_km = 1000
+distance = 3
+total_fare = base_fare + (extra_fare_per_km * distance)
+print(f""택시 요금은 {total_fare}원입니다."")
+",상
+변수와 타입,배달 음식 할인 계산,"배달 음식이 25000원이지만, 10%의 할인이 있어요. 할인을 적용한 후 최종 결제 금액을 계산해 보세요.","original_price = 25000
+discount = 0.1
+final_price = original_price * (1 - discount)
+print(f""할인 후 최종 결제 금액은 {final_price}원입니다."")
+",상
+변수와 타입,타입 확인 후 출력하기,"변수 data에 10을 넣고, 그 데이터의 타입이 무엇인지 출력해 보세요.","data = 10
+print(type(data))
+",하
+함수,재귀로 나무 그리기,숫자 n을 입력받아 n층으로 이루어진 나무를 그리는 draw_tree 함수를 만들어보세요.,"def draw_tree(n, level=1):
+    if level > n:
+        return
+    print(' ' * (n - level) + '*' * (2 * level - 1))
+    draw_tree(n, level + 1)",상
+함수,숨은 단어 찾기,"find_hidden_word(sentence, start, end) 함수를 작성하세요. sentence에서 start와 end라는 단어 사이에 있는 단어를 추출해 리스트로 반환하는 함수입니다.","def find_hidden_word(sentence, start, end):
+    words = sentence.split()
+    try:
+        start_idx = words.index(start) + 1
+        end_idx = words.index(end)
+        return words[start_idx:end_idx]
+    except ValueError:
+        return []
+",상
+함수,로봇 이동 경로 추적,"2D 평면에서 로봇의 위치를 추적하는 move_robot(commands) 함수를 작성하세요. commands는 이동 명령어 문자열로 이루어져 있습니다. 'U'는 위로, 'D'는 아래로, 'L'은 왼쪽으로, 'R'은 오른쪽으로 이동을 의미합니다. 로봇의 최종 좌표를 튜플 형태로 반환하세요. 시작 위치는 (0, 0)입니다.","def move_robot(commands):
+    x, y = 0, 0
+    for command in commands:
+        if command == 'U':
+            y += 1
+        elif command == 'D':
+            y -= 1
+        elif command == 'L':
+            x -= 1
+        elif command == 'R':
+            x += 1
+    return (x, y)",중
+함수,펄스-인-버즈,"숫자 리스트를 입력받아, 3의 배수는 ""Pulse"", 5의 배수는 ""In"", 둘 다의 배수는 ""Buzz""로 변환하는 `pulse_in_buzz` 함수를 작성하세요. 숫자 리스트가 주어지면 변환된 리스트를 반환합니다.","def pulse_in_buzz(numbers):
+    result = []
+    for n in numbers:
+        if n % 3 == 0 and n % 5 == 0:
+            result.append(""Buzz"")
+        elif n % 3 == 0:
+            result.append(""Pulse"")
+        elif n % 5 == 0:
+            result.append(""In"")
+        else:
+            result.append(n)
+    return result",중
+함수,버튼 누르기,"사용자가 버튼을 누를 때마다 출력되는 문구가 달라지는 프로그램을 작성해보세요.
+
+조건:
+
+버튼이 눌릴 때마다 출력되는 문구는 아래와 같습니다.
+1번 버튼: ""버튼 1을 눌렀습니다!""
+2번 버튼: ""버튼 2을 눌렀습니다!""
+3번 버튼: ""버튼 3을 눌렀습니다!""
+그 외의 버튼을 누르면 ""잘못된 버튼입니다!""가 출력됩니다.","def press_button(number):
+    if number == 1:
+        print(""버튼 1을 눌렀습니다!"")
+    elif number == 2:
+        print(""버튼 2을 눌렀습니다!"")
+    elif number == 3:
+        print(""버튼 3을 눌렀습니다!"")
+    else:
+        print(""잘못된 버튼입니다!"")",하
+함수,숫자 맞추기 게임,"1부터 100까지의 숫자 중 사용자가 생각한 숫자를 맞추는 게임을 만들어보세요. 사용자가 정답을 맞힐 때까지 컴퓨터가 ""더 큰 숫자"", ""더 작은 숫자""라고 힌트를 줍니다.
+","import random
+
+def guess_number():
+    target_number = random.randint(1, 100)
+    print(""1부터 100 사이의 숫자를 맞춰보세요!"")
+    while True:
+        guess = int(input(""숫자를 입력하세요: ""))
+        if guess < target_number:
+            print(""더 큰 숫자입니다!"")
+        elif guess > target_number:
+            print(""더 작은 숫자입니다!"")
+        else:
+            print(""정답입니다!"")
+            break",중
+함수,별 모양 그리기,"사용자가 원하는 크기의 정사각형 별 모양을 출력하는 프로그램을 작성하세요. 예를 들어, 사용자가 5를 입력하면 5x5 크기의 별 모양을 출력합니다.","def draw_square(size):
+    for i in range(size):
+        print(""*"" * size)",하
+함수,주사위 던지기,주사위를 던져서 나온 숫자를 출력하는 프로그램을 작성하세요. 주사위는 1부터 6까지의 숫자만 나오게 해야 합니다.,"import random
+
+def roll_dice():
+    return random.randint(1, 6)",하
+함수,마법의 계산기,"사용자가 입력한 두 숫자와 연산자를 받아서 계산하는 프로그램을 작성하세요. 연산자는 더하기, 빼기, 곱하기, 나누기 등을 포함합니다. 이 계산기는 마법처럼, 사용자가 입력한 연산자에 따라 다른 마법의 결과를 보여줍니다!","def magic_calculator(a, b, operator):
+    if operator == ""+"":
+        return a + b
+    elif operator == ""-"":
+        return a - b
+    elif operator == ""*"":
+        return a * b
+    elif operator == ""/"":
+        if b != 0:
+            return a / b
+        else:
+            return ""0으로 나눌 수 없습니다!""
+    else:
+        return ""알 수 없는 연산자입니다!""",중
+함수,시간 계산기,"주어진 시간(시, 분)을 더하거나 빼는 프로그램을 작성하세요. 예를 들어, 5시간 30분을 3시간 45분 더한 결과는 무엇인가요?","def add_time(hours, minutes, add_hours, add_minutes):
+    total_minutes = (hours * 60 + minutes) + (add_hours * 60 + add_minutes)
+    total_hours = total_minutes // 60
+    total_minutes = total_minutes % 60
+    return total_hours, total_minutes",중
+함수,숫자 구구단,"사용자가 입력한 숫자의 구구단을 출력하는 프로그램을 작성하세요. 예를 들어, 3을 입력하면 3단을 출력합니다.","def multiplication_table(n):
+    for i in range(1, 10):
+        print(f""{n} x {i} = {n * i}"")",하
+함수,숫자 변환 게임,"사용자가 입력한 숫자를 다른 숫자로 변환하는 게임을 만들어보세요. 숫자 1부터 10까지는 각각 다른 동물로 변환됩니다.
+
+1 -> ""고양이""
+2 -> ""강아지""
+3 -> ""토끼""
+4 -> ""호랑이""
+5 -> ""펭귄""
+6 -> ""코끼리""
+7 -> ""사자""
+8 -> ""코알라""
+9 -> ""고릴라""
+10 -> ""기린""","def number_to_animal(number):
+    animals = {
+        1: ""고양이"", 2: ""강아지"", 3: ""토끼"", 4: ""호랑이"", 
+        5: ""펭귄"", 6: ""코끼리"", 7: ""사자"", 8: ""코알라"", 
+        9: ""고릴라"", 10: ""기린""
+    }
+    return animals.get(number, ""숫자는 1부터 10까지 입력하세요!"")",중
+함수,반복되는 숫자 패턴,"주어진 숫자에서 반복되는 패턴을 찾아내는 프로그램을 작성하세요. 예를 들어, 숫자 1212는 12가 두 번 반복되는 패턴이 있습니다. 주어진 숫자에서 반복되는 패턴을 출력하세요.","def find_pattern(number):
+    str_num = str(number)
+    length = len(str_num)
+    for i in range(1, length // 2 + 1):
+        pattern = str_num[:i]
+        if str_num == pattern * (length // i):
+            return pattern
+    return ""패턴 없음""",상
+함수,미래의 동전 계산기,"미래의 동전은 오늘의 동전보다 한 단계 더 업그레이드된 기능을 가지고 있습니다! 예를 들어, 1원짜리 동전은 2원으로 바뀌고, 5원짜리 동전은 10원으로 바뀝니다. 이 계산기에서는 주어진 동전들의 합을 계산하면서 각 동전의 가치를 업그레이드해서 더해줍니다.","def upgraded_coin_sum(coins):
+    upgraded_coins = {1: 2, 5: 10, 10: 20, 50: 100, 100: 200}  # 동전 업그레이드
+    return sum(upgraded_coins.get(coin, coin) for coin in coins)
+",중
+함수,학점 계산기,"학생들이 점수를 입력합니다. 점수에 따라 학생의 학점을 평가하는 프로그램을 작성하세요. 점수에 따라 학생이 A, B, C, D, E, F 등급으로 평가됩니다.","def score_evaluation(score):
+    if score >= 90:
+        return ""A""
+    elif score >= 80:
+        return ""B""
+    elif score >= 70:
+        return ""C""
+    elif score >= 60:
+        return ""D""
+    elif score >= 50:
+        return ""E""
+    else:
+        return ""F""",중
+반복문,고양이 계단 오르기,"고양이가 계단을 오르는데, 매번 1칸 또는 2칸을 오를 수 있습니다. n칸짜리 계단을 오르는 모든 방법의 수를 계산하세요. (예: 3칸일 경우 1+1+1, 1+2, 2+1의 세 가지 방법이 있습니다)","n = int(input(""계단의 총 칸 수 n을 입력하세요: ""))
+
+# 초기화
+ways = [1, 1]  # 0칸과 1칸의 경우의 수
+for i in range(2, n + 1):
+    ways.append(ways[i - 1] + ways[i - 2])
+
+print(f""{n}칸을 오르는 방법의 수: {ways[n]}"")
+",중
+반복문,스스로 만드는 숫자 마방진,"홀수 n이 주어졌을 때, n x n 마방진을 만들어 출력하세요. 마방진은 각 행, 열, 대각선의 합이 같은 정사각형 배열입니다. (예: n = 3일 때 마방진 [[8, 1, 6], [3, 5, 7], [4, 9, 2]])","n = int(input(""홀수 n을 입력하세요: ""))
+
+magic_square = [[0] * n for _ in range(n)]
+i, j = 0, n // 2
+
+for num in range(1, n * n + 1):
+    magic_square[i][j] = num
+    new_i, new_j = (i - 1) % n, (j + 1) % n
+    if magic_square[new_i][new_j]:
+        i += 1
+    else:
+        i, j = new_i, new_j
+
+for row in magic_square:
+    print(row)
+",상
+반복문,중첩된 이름 피라미드,"사용자로부터 이름을 입력받고, 입력된 이름의 글자 수에 맞춰 피라미드 형태로 출력하세요. 예를 들어 이름이 ""Anna""라면 다음과 같이 출력됩니다:","name = input(""이름을 입력하세요: "")
+
+for i in range(1, len(name) + 1):
+    print(name[:i])
+",하
+반복문,랜덤 주사위 던지기 게임,"컴퓨터가 주사위를 던졌을 때, 1~6 사이의 숫자를 랜덤하게 생성하고 이를 10번 반복합니다. 숫자 6이 나올 때마다 ""성공!""을 출력하고, 마지막에 총 성공 횟수를 알려줍니다.","import random
+
+success_count = 0
+
+for _ in range(10):
+    dice_roll = random.randint(1, 6)
+    if dice_roll == 6:
+        success_count += 1
+        print(""성공!"")
+    else:
+        print(f""{dice_roll}이(가) 나왔습니다."")
+
+print(f""총 성공 횟수: {success_count}"")
+",중
+반복문,동전 잔돈 계산기,"어떤 금액이 주어졌을 때, 500원, 100원, 50원, 10원 동전으로 잔돈을 가장 적은 개수로 만들 수 있는 방법을 반복문을 사용하여 계산하세요.","amount = int(input(""금액을 입력하세요: ""))
+
+coins = [500, 100, 50, 10]
+coin_count = {}
+
+for coin in coins:
+    count = amount // coin
+    amount %= coin
+    coin_count[coin] = count
+
+for coin, count in coin_count.items():
+    print(f""{coin}원 동전: {count}개"")
+",중
+반복문,신기한 문자 회전,"사용자가 문자열을 입력하면, 문자열을 한 글자씩 오른쪽으로 회전시키며 출력하는 프로그램을 작성하세요. 예를 들어, ""hello""를 입력받으면 다음과 같이 출력됩니다:","word = input(""문자열을 입력하세요: "")
+
+for i in range(len(word)):
+    rotated_word = word[-i:] + word[:-i]
+    print(rotated_word)
+",하
+반복문,숫자 삼각형 만들기,"양의 정수 n을 입력받아, 다음과 같은 형태로 숫자 삼각형을 출력하세요. 예를 들어, n = 5일 때 다음과 같이 출력됩니다:","n = int(input(""양의 정수 n을 입력하세요: ""))
+
+for i in range(1, n + 1):
+    for j in range(1, i + 1):
+        print(j, end="""")
+    print()
+",중
+반복문,합 구하기,"사용자로부터 양의 정수 n을 입력받아, 1부터 n까지의 합을 구하는 프로그램을 작성하세요.","n = int(input(""양의 정수 n을 입력하세요: ""))
+total_sum = 0
+
+for i in range(1, n + 1):
+    total_sum += i
+
+print(f""1부터 {n}까지의 합: {total_sum}"")
+",하
+반복문,구구단 만들기,"사용자로부터 출력할 구구단의 단을 입력받아, 해당 단을 출력하세요.","dan = int(input(""출력할 구구단의 단을 입력하세요: ""))
+
+for i in range(1, 10):
+    print(f""{dan} x {i} = {dan * i}"")
+",하
+반복문,별로 트리 만들기,"사용자로부터 양의 정수 n을 입력받아, n 층의 별 트리를 출력하세요.","n = int(input(""트리의 높이를 입력하세요: ""))
+
+for i in range(1, n + 1):
+    print("" "" * (n - i) + ""*"" * (2 * i - 1))
+",중
+반복문,행운의 숫자 맞히기 게임,"컴퓨터가 1부터 100 사이의 랜덤 숫자를 하나 고릅니다. 사용자는 컴퓨터가 고른 숫자를 맞히기 위해 최대 7번의 기회를 가집니다. 사용자가 입력할 때마다 컴퓨터는 더 큰지, 더 작은지 힌트를 줍니다.","import random
+
+secret_number = random.randint(1, 100)
+attempts = 7
+
+print(""1부터 100 사이의 숫자를 맞혀보세요!"")
+
+for i in range(attempts):
+    guess = int(input(f""추측한 숫자 (남은 기회 {attempts - i}회): ""))
+    if guess < secret_number:
+        print(""더 큰 숫자입니다."")
+    elif guess > secret_number:
+        print(""더 작은 숫자입니다."")
+    else:
+        print(""축하합니다! 정답입니다!"")
+        break
+else:
+    print(f""아쉽네요! 정답은 {secret_number}였습니다."")
+",상
+반복문,추억의 숫자 야구 게임,"컴퓨터가 0부터 9까지의 숫자 중에서 서로 다른 3개의 숫자를 고릅니다. 사용자는 이 숫자들을 맞히기 위해 추측하고, 컴퓨터는 숫자가 맞았는지와 위치가 맞았는지 피드백을 줍니다.","import random
+
+# 컴퓨터가 선택한 3개의 숫자 (서로 다르게 선택)
+numbers = random.sample(range(10), 3)
+
+attempts = 0
+while True:
+    guess = input(""세 자리 숫자를 입력하세요: "")
+    guess_numbers = [int(digit) for digit in guess]
+
+    # 스트라이크와 볼 계산
+    strike = sum(1 for i in range(3) if guess_numbers[i] == numbers[i])
+    ball = sum(1 for i in range(3) if guess_numbers[i] in numbers and guess_numbers[i] != numbers[i])
+
+    attempts += 1
+    print(f""{strike} 스트라이크, {ball} 볼"")
+
+    if strike == 3:
+        print(f""축하합니다! {attempts}번 만에 맞히셨습니다!"")
+        break
+",상
+반복문,달력 그리기,"사용자가 원하는 월의 달력을 그려 보세요. 요일과 일자 순서로, 각 줄에 7일씩 나누어 표시합니다. 예를 들어, 1일이 화요일이고, 31일까지 있는 경우를 그려보세요.","start_day = int(input(""첫 번째 날의 요일을 입력하세요 (0=일요일, 6=토요일): ""))
+days = int(input(""이번 달의 일 수를 입력하세요: ""))
+
+print(""일 월 화 수 목 금 토"")
+print(""   "" * start_day, end="""")
+
+for day in range(1, days + 1):
+    print(f""{day:2}"", end="" "")
+    if (day + start_day) % 7 == 0:
+        print()
+",상
+반복문,숫자 회전판 만들기,사용자가 입력한 숫자 n을 기준으로 1부터 n까지 회전하여 반복적으로 표시합니다.,"n = int(input(""숫자 회전판 크기를 입력하세요: ""))
+
+for i in range(n):
+    for j in range(n):
+        print((i + j) % n + 1, end="" "")
+    print()
+",중
+반복문,거꾸로 구구단,"구구단을 출력하되, 9 x 9부터 시작하여 1 x 1까지 거꾸로 출력되도록 해보세요.","for i in range(9, 0, -1):
+    for j in range(9, 0, -1):
+        print(f""{i} x {j} = {i * j}"", end=""\t"")
+    print()
+",중
+변수와 타입,내 이름의 성,"변수 my_name에 자신의 이름을 넣고, 그 이름의 첫 글자를 출력해보세요.","my_name = ""민수""
+print(my_name[0])  # 첫 글자만 출력
+",하
+변수와 타입,문자열과 숫자 합치기,"변수 animal에 동물 이름을, 변수 number에 그 동물의 숫자를 저장한 후, 이 두 변수를 합쳐서 출력해보세요. 예를 들어, ""강아지 3마리"".","animal = ""강아지""
+number = 3
+print(animal + "" "" + str(number) + ""마리"")  # 문자열과 숫자 합치기
+",중
+변수와 타입,이름 바꾸기,"변수 my_name에 자신의 이름을 저장한 후, my_name을 대문자로 바꾸고 출력해보세요.","my_name = ""민수""
+print(my_name.upper())  # 대문자로 바꾸기
+",하
+변수와 타입,계산기,"변수 a와 b에 숫자를 저장한 후, a를 b로 나눈 값이 3보다 큰지 확인해보세요.","a = 9
+b = 2
+result = a / b
+",하
+변수와 타입,좋아하는 음악과 시간,"변수 favorite_song에 좋아하는 음악의 제목을, 변수 song_duration에 그 음악의 길이를 저장하고, 그 음악의 제목과 길이를 출력해보세요.","favorite_song = ""어드벤처 타임""
+song_duration = 3.5
+print(f""My favorite song is {favorite_song} and it lasts {song_duration} minutes."")
+",중
+변수와 타입,날짜를 문자열로,"변수 day에 오늘의 날짜(예: ""2024-11-14"")를 문자열로 저장하고, 그 날짜의 ""년"", ""월"", ""일""을 각각 추출하여 출력해보세","day = ""2024-11-14""
+year, month, day = day.split(""-"")  # 문자열을 '-' 기준으로 나누기
+print(f""년: {year}, 월: {month}, 일: {day}"")
+",상
+변수와 타입,전화번호 형식,"변수 phone_number에 전화번호(예: ""01012345678"")를 넣고, 그 번호를 ""010-1234-5678"" 형식으로 출력해보세요.","phone_number = ""01012345678""
+formatted_number = phone_number[:3] + ""-"" + phone_number[3:7] + ""-"" + phone_number[7:]
+print(formatted_number)
+",상
+변수와 타입,타입 확인하기,"변수 height에 자신의 키를 넣고, 그 변수의 타입을 확인해보세요.","height = 170.5
+print(type(height))
+",하
+변수와 타입,문자열 합치기,"변수 first_name에 ""김""을, last_name에 ""철수""를 넣고, 두 문자열을 합쳐서 출력해보세요","first_name = ""김""
+last_name = ""철수""
+print(first_name + last_name)
+",중
+변수와 타입,변수 타입 변환하기,"변수 num_str에 ""123""을 넣고, 이를 정수로 변환한 후 10을 더한 값을 출력해보세요.","num_str = ""123""
+num = int(num_str)  # 문자열을 정수로 변환
+print(num + 10)
+",중
+변수와 타입,숫자로 나이 계산하기,"당신은 친구에게 생일이 지난 후 몇 살이 되었는지 물어보고 싶어요. 친구의 나이는 ""12""라는 문자열로 입력되는데, 이를 숫자로 변환해 나이를 1년 더한 후 출력해 보세요.","age = ""12""
+age = int(age) + 1  # 나이를 1살 더해보자!
+print(age)
+",중
+변수와 타입,하루 일과 시간 계산하기,"하루는 24시간이죠! 8시간 동안 공부를 하고, 2시간 동안 운동을 했을 때, 그 이후 얼마나 시간이 남는지 계산해 보세요.","total_time = 24
+study_time = 8
+exercise_time = 2
+remaining_time = total_time - (study_time + exercise_time)
+print(f""남은 시간: {remaining_time}시간"")",상
+변수와 타입,택시 요금 계산하기,"택시를 타면 기본 요금은 3000원이지만, 추가로 1km당 1000원의 요금이 붙어요. 3km를 탔다면 택시 요금을 계산해 보세요.","base_fare = 3000
+extra_fare_per_km = 1000
+distance = 3
+total_fare = base_fare + (extra_fare_per_km * distance)
+print(f""택시 요금은 {total_fare}원입니다."")
+",상
+변수와 타입,배달 음식 할인 계산,"배달 음식이 25000원이지만, 10%의 할인이 있어요. 할인을 적용한 후 최종 결제 금액을 계산해 보세요.","original_price = 25000
+discount = 0.1
+final_price = original_price * (1 - discount)
+print(f""할인 후 최종 결제 금액은 {final_price}원입니다."")
+",상
+변수와 타입,타입 확인 후 출력하기,"변수 data에 10을 넣고, 그 데이터의 타입이 무엇인지 출력해 보세요.","data = 10
+print(type(data))
+",하
+입출력,간식 추천,"좋아하는 간식을 입력받아 ""오늘은 [간식] 어떠세요?""라고 출력하세요","snack = input(""좋아하는 간식을 입력하세요: "")
+print(f""오늘은 {snack} 어떠세요?"")",하
+입출력,더하기 계산기,두 숫자를 입력받아 그 합을 출력하세요.,"num1 = int(input(""첫 번째 숫자를 입력하세요: ""))
+num2 = int(input(""두 번째 숫자를 입력하세요: ""))
+print(f""두 숫자의 합은 {num1 + num2}입니다."")",하
+입출력,시간 계산기,"초 단위로 시간을 입력받아 몇 시간, 몇 분, 몇 초인지 계산하세요","seconds = int(input(""초 단위 시간을 입력하세요: ""))
+hours = seconds // 3600
+minutes = (seconds % 3600) // 60
+remaining_seconds = seconds % 60
+print(f""{seconds}초는 {hours}시간 {minutes}분 {remaining_seconds}초입니다."")",하
+입출력,나이 계산기,태어난 연도를 입력받아 현재 나이를 계산하세요.,"birth_year = int(input(""태어난 연도를 입력하세요: ""))
+current_year = 2024
+age = current_year - birth_year
+print(f""당신의 나이는 {age}살입니다."")",중
+입출력,영수증 계산기,사용자가 구매한 물건의 이름과 가격을 입력받아 총합을 출력하세요.,"item1 = input(""첫 번째 물건의 이름: "")
+price1 = int(input(f""{item1}의 가격: ""))
+item2 = input(""두 번째 물건의 이름: "")
+price2 = int(input(f""{item2}의 가격: ""))
+total = price1 + price2
+print(f""{item1}와 {item2}의 총합은 {total}원입니다."")",중
+입출력,날짜 입력 받기,"문제: 사용자가 ""YYYY-MM-DD"" 형식으로 날짜를 입력하면 년, 월, 일을 분리해 출력하세요.","date = input(""날짜를 'YYYY-MM-DD' 형식으로 입력하세요: "")
+year, month, day = date.split(""-"")
+print(f""년: {year}, 월: {month}, 일: {day}"")",하
+입출력,통화 환전 계산기,사용자가 원화를 입력하면 달러(1 USD = 1300 KRW)로 환전 금액을 계산하세요.,"krw = int(input(""환전할 원화를 입력하세요: ""))
+usd = krw / 1300
+print(f""{krw}원은 약 {usd:.2f}달러입니다."")",하
+입출력,간단한 시계,"몇 분 뒤의 시간을 계산하는 프로그램을 작성하세요. 현재 시각(시, 분)과 추가할 분을 입력받아 계산된 결과를 출력하세요.","current_time = input(""현재 시각을 '시 분' 형식으로 입력하세요: "")
+additional_minutes = int(input(""추가할 분을 입력하세요: ""))
+hour, minute = map(int, current_time.split())
+total_minutes = hour * 60 + minute + additional_minutes
+new_hour = (total_minutes // 60) % 24
+new_minute = total_minutes % 60
+print(new_hour, new_minute)",상
+입출력,달력 포맷 만들기,"""년-월-일"" 형식의 날짜를 입력받아 ""일/월/년"" 형식으로 바꿔 출력하세요.","date = input(""날짜를 '년-월-일' 형식으로 입력하세요: "")
+year, month, day = date.split('-')
+print(day, month, year, sep='/')",중
+입출력,화씨(Fahrenheit) ↔ 섭씨(Celsius) 변환,"섭씨 온도를 입력받아 화씨로 변환하고, 화씨 온도를 입력받아 섭씨로 변환한 결과를 각각 출력하세요.","celsius = float(input(""섭씨 온도를 입력하세요: ""))
+fahrenheit = celsius * 9 / 5 + 32
+print(fahrenheit)
+
+fahrenheit = float(input(""화씨 온도를 입력하세요: ""))
+celsius = (fahrenheit - 32) * 5 / 9
+print(celsius)",상
+입출력,책 페이지 계산기,책의 총 페이지 수와 하루 읽을 페이지 수를 입력받아 며칠이 걸릴지 계산하세요,"total_pages = int(input(""책의 총 페이지 수를 입력하세요: ""))
+pages_per_day = int(input(""하루에 읽을 페이지 수를 입력하세요: ""))
+days = -(-total_pages // pages_per_day)  # 올림 처리
+print(days)",상
+입출력,영화 상영 시간 계산기,"영화의 시작 시각(시, 분)과 상영 시간을 입력받아 끝나는 시각을 계산하세요.","start_time = input(""영화 시작 시간을 '시 분' 형식으로 입력하세요: "")
+duration = int(input(""영화 상영 시간을 분 단위로 입력하세요: ""))
+hour, minute = map(int, start_time.split())
+end_hour = (hour + (minute + duration) // 60) % 24
+end_minute = (minute + duration) % 60
+print(end_hour, end_minute)",상
+입출력,도서관 벌금 계산,반납해야 할 책의 연체 일수를 입력받아 벌금을 계산하세요. (하루당 100원),"late_days = int(input(""연체 일수를 입력하세요: ""))
+fine_per_day = 100
+total_fine = late_days * fine_per_day
+print(total_fine)",중
+입출력,MP3 재생 시간 계산,"MP3 파일의 재생 길이(분, 초)와 총 곡 수를 입력받아, 전체 재생 시간을 시, 분, 초로 출력하세요.","length_per_song = input(""곡의 길이를 '분 초' 형식으로 입력하세요: "")
+song_count = int(input(""총 곡 수를 입력하세요: ""))
+minutes, seconds = map(int, length_per_song.split())
+
+total_seconds = (minutes * 60 + seconds) * song_count
+hours = total_seconds // 3600
+minutes = (total_seconds % 3600) // 60
+seconds = total_seconds % 60
+
+print(hours, minutes, seconds)",상
+입출력,택배 무게 요금 계산,"택배 무게를 입력받아, 무게당 요금(1kg당 3000원)을 계산해 출력하세요","weight = float(input(""택배 무게를 입력하세요 (kg): ""))
+rate = 3000
+total_cost = weight * rate
+print(int(total_cost))",중
+조건문,커피 머신,"커피 가격(4000원)을 입력받아, 지불 금액이 부족하면 부족한 금액을 출력하고, 충분하면 거스름돈을 출력하세요.","coffee_price = 4000
+money = int(input(""지불 금액을 입력하세요: ""))
+
+if money < coffee_price:
+    print(f""{coffee_price - money}원이 부족합니다."")
+else:
+    print(f""거스름돈: {money - coffee_price}원"")",하
+조건문,자동차 속도 경고,"현재 자동차 속도를 입력받아, 60km/h 이상일 경우 ""과속입니다!""를 출력하세요.","speed = int(input(""현재 속도를 입력하세요 (km/h): ""))
+
+if speed >= 60:
+    print(""과속입니다!"")
+else:
+    print(""안전 속도입니다."")",하
+조건문,영화 관람 등급 검사,"사용자의 나이를 입력받아, 15세 이상이면 ""관람 가능합니다!""를 출력하고, 그렇지 않으면 ""관람 불가입니다!""를 출력하세요","age = int(input(""나이를 입력하세요: ""))
+
+if age >= 15:
+    print(""관람 가능합니다!"")
+else:
+    print(""관람 불가입니다!"")",하
+조건문,아이돌 팬덤 이름 맞히기,"입력받은 아이돌 이름에 따라 팬덤 이름을 출력하세요.
+(예: ""BTS"" → ""아미"", ""BLACKPINK"" → ""블링크"", 그 외 → ""모르겠어요!"")","idol = input(""아이돌 이름을 입력하세요: "")
+
+if idol == ""BTS"":
+    print(""팬덤 이름: 아미"")
+elif idol == ""BLACKPINK"":
+    print(""팬덤 이름: 블링크"")
+else:
+    print(""모르겠어요!"")
+",하
+조건문,계절 판별기,"월을 입력받아, ""봄(35)"", ""여름(68)"", ""가을(9~11)"", ""겨울(12, 1, 2)"" 중 해당 계절을 출력하세요.","month = int(input(""월을 입력하세요 (1~12): ""))
+
+if month in [3, 4, 5]:
+    print(""봄"")
+elif month in [6, 7, 8]:
+    print(""여름"")
+elif month in [9, 10, 11]:
+    print(""가을"")
+elif month in [12, 1, 2]:
+    print(""겨울"")
+else:
+    print(""잘못된 입력입니다!"")",중
+조건문,오락실 게임 이용 제한,"나이를 입력받아, 10세 미만이면 ""사용 불가!"", 10세 이상이면 ""환영합니다!""를 출력하세요.","age = int(input(""나이를 입력하세요: ""))
+
+if age < 10:
+    print(""사용 불가!"")
+else:
+    print(""환영합니다!"")",하
+조건문,주차 요금 계산기,"주차 시간을 입력받아 2시간 이내는 5000원, 이후에는 1시간당 1000원을 추가 계산하세요.","parking_time = int(input(""주차 시간을 입력하세요 (시간): ""))
+
+if parking_time <= 2:
+    fee = 5000
+else:
+    fee = 5000 + (parking_time - 2) * 1000
+
+print(f""주차 요금: {fee}원"")",중
+조건문,애완동물 분류기,"동물 이름을 입력받아 애완동물인지 아닌지를 출력하세요.
+""강아지"", ""고양이"" → ""이건 애완동물이에요!""
+그 외 → ""이건 잘 모르겠는데요?""","pet = input(""동물 이름을 입력하세요: "")
+
+if pet in [""강아지"", ""고양이""]:
+    print(""이건 애완동물이에요!"")
+else:
+    print(""이건 잘 모르겠는데요?"")",중
+조건문,부장님 드립 체크기,"부장님이 한 말을 입력받아, 끝에 ""ㅋㅋ""가 붙어 있으면 ""재밌습니다, 부장님!"" 출력.
+그렇지 않으면 ""..."" 출력.","comment = input(""부장님의 말을 입력하세요: "")
+
+if comment.endswith(""ㅋㅋ""):
+    print(""재밌습니다, 부장님!"")
+else:
+    print(""..."")
+",중
+조건문,스마트 냉장고,"냉장고에 있는 음식을 입력받아 ""우유"", ""계란"", ""치즈"" 중 하나면 ""냉장고에 있습니다!"" 출력.
+그 외에는 ""냉장고에 없습니다!"" 출력.","food = input(""냉장고에 있는 음식을 입력하세요: "")
+
+if food in [""우유"", ""계란"", ""치즈""]:
+    print(""냉장고에 있습니다!"")
+else:
+    print(""냉장고에 없습니다!"")",중
+조건문,영화관 할인 시스템,"영화표 가격은 기본적으로 12,000원이다.
+- 나이가 60세 이상이면 50% 할인.
+- 학생증을 소지한 학생이면 30% 할인.
+- 생일에 영화를 보면 20% 추가 할인.
+- 위 조건들을 모두 적용하여 최종 금액을 출력하는 프로그램을 작성하세요.
+(단, 중복 할인 가능)","age = int(input(""나이를 입력하세요: ""))
+is_student = input(""학생증이 있나요? (예/아니오): "")
+is_birthday = input(""오늘이 생일인가요? (예/아니오): "")
+
+price = 12000
+
+if age >= 60:
+    price *= 0.5
+if is_student == ""예"":
+    price *= 0.7
+if is_birthday == ""예"":
+    price *= 0.8
+
+print(f""최종 영화표 가격은 {int(price)}원입니다."")",상
+조건문,수학 퀴즈 자동 채점기,"사용자로부터 세 가지 수학 문제의 정답을 입력받는다.
+- 정답이 모두 맞으면 ""만점!"" 출력.
+- 두 개만 맞으면 ""잘했어요!""
+- 하나만 맞으면 ""더 노력하세요!""
+- 아무것도 맞지 않으면 ""공부를 좀 해야겠네요..."" 출력.","correct_answers = [5, 12, 20]  # 정답 리스트
+score = 0
+
+answer1 = int(input(""문제 1의 정답은? ""))
+if answer1 == correct_answers[0]:
+    score += 1
+
+answer2 = int(input(""문제 2의 정답은? ""))
+if answer2 == correct_answers[1]:
+    score += 1
+
+answer3 = int(input(""문제 3의 정답은? ""))
+if answer3 == correct_answers[2]:
+    score += 1
+
+if score == 3:
+    print(""만점!"")
+elif score == 2:
+    print(""잘했어요!"")
+elif score == 1:
+    print(""더 노력하세요!"")
+else:
+    print(""공부를 좀 해야겠네요..."")",상
+조건문,다중 언어 번역기,"사용자로부터 언어 코드를 입력받아 해당 인사말을 출력하세요.
+1. ""ko"" → ""안녕하세요!""
+2. ""en"" → ""Hello!""
+3. ""es"" → ""¡Hola!""
+4. ""fr"" → ""Bonjour!""
+5. 다른 언어 코드 → ""죄송합니다, 지원하지 않는 언어입니다.""","language_code = input(""언어 코드를 입력하세요 (ko/en/es/fr): "")
+
+if language_code == ""ko"":
+    print(""안녕하세요!"")
+elif language_code == ""en"":
+    print(""Hello!"")
+elif language_code == ""es"":
+    print(""¡Hola!"")
+elif language_code == ""fr"":
+    print(""Bonjour!"")
+else:
+    print(""죄송합니다, 지원하지 않는 언어입니다."")
+",상
+조건문,급여 계산 프로그램,"기본 시급은 10,000원.
+8시간을 초과한 근무 시간은 1.5배의 시급을 적용.
+최종 급여를 출력하는 프로그램을 작성하세요.","hours_worked = int(input(""근무 시간을 입력하세요: ""))
+base_rate = 10000
+
+if hours_worked > 8:
+    overtime = hours_worked - 8
+    salary = (8 * base_rate) + (overtime * base_rate * 1.5)
+else:
+    salary = hours_worked * base_rate
+
+print(f""총 급여는 {int(salary)}원입니다."")",상
+조건문,시간차 계산기,"두 개의 시간을 24시간 형식으로 입력받아, 두 시간 사이의 차이를 계산하여 출력하세요.
+(예: 14:00과 16:30 입력 시, ""2시간 30분 차이입니다."")","start = input(""시작 시간을 입력하세요 (HH:MM): "")
+end = input(""종료 시간을 입력하세요 (HH:MM): "")
+
+start_hour, start_minute = map(int, start.split("":""))
+end_hour, end_minute = map(int, end.split("":""))
+
+start_total = start_hour * 60 + start_minute
+end_total = end_hour * 60 + end_minute
+
+diff = abs(end_total - start_total)
+hours = diff // 60
+minutes = diff % 60
+
+print(f""{hours}시간 {minutes}분 차이입니다."")",상
+함수,재귀로 나무 그리기,숫자 n을 입력받아 n층으로 이루어진 나무를 그리는 draw_tree 함수를 만들어보세요.,"def draw_tree(n, level=1):
+    if level > n:
+        return
+    print(' ' * (n - level) + '*' * (2 * level - 1))
+    draw_tree(n, level + 1)",상
+함수,숨은 단어 찾기,"find_hidden_word(sentence, start, end) 함수를 작성하세요. sentence에서 start와 end라는 단어 사이에 있는 단어를 추출해 리스트로 반환하는 함수입니다.","def find_hidden_word(sentence, start, end):
+    words = sentence.split()
+    try:
+        start_idx = words.index(start) + 1
+        end_idx = words.index(end)
+        return words[start_idx:end_idx]
+    except ValueError:
+        return []
+",상
+함수,로봇 이동 경로 추적,"2D 평면에서 로봇의 위치를 추적하는 move_robot(commands) 함수를 작성하세요. commands는 이동 명령어 문자열로 이루어져 있습니다. 'U'는 위로, 'D'는 아래로, 'L'은 왼쪽으로, 'R'은 오른쪽으로 이동을 의미합니다. 로봇의 최종 좌표를 튜플 형태로 반환하세요. 시작 위치는 (0, 0)입니다.","def move_robot(commands):
+    x, y = 0, 0
+    for command in commands:
+        if command == 'U':
+            y += 1
+        elif command == 'D':
+            y -= 1
+        elif command == 'L':
+            x -= 1
+        elif command == 'R':
+            x += 1
+    return (x, y)",중
+함수,펄스-인-버즈,"숫자 리스트를 입력받아, 3의 배수는 ""Pulse"", 5의 배수는 ""In"", 둘 다의 배수는 ""Buzz""로 변환하는 `pulse_in_buzz` 함수를 작성하세요. 숫자 리스트가 주어지면 변환된 리스트를 반환합니다.","def pulse_in_buzz(numbers):
+    result = []
+    for n in numbers:
+        if n % 3 == 0 and n % 5 == 0:
+            result.append(""Buzz"")
+        elif n % 3 == 0:
+            result.append(""Pulse"")
+        elif n % 5 == 0:
+            result.append(""In"")
+        else:
+            result.append(n)
+    return result",중
+함수,버튼 누르기,"사용자가 버튼을 누를 때마다 출력되는 문구가 달라지는 프로그램을 작성해보세요.
+
+조건:
+
+버튼이 눌릴 때마다 출력되는 문구는 아래와 같습니다.
+1번 버튼: ""버튼 1을 눌렀습니다!""
+2번 버튼: ""버튼 2을 눌렀습니다!""
+3번 버튼: ""버튼 3을 눌렀습니다!""
+그 외의 버튼을 누르면 ""잘못된 버튼입니다!""가 출력됩니다.","def press_button(number):
+    if number == 1:
+        print(""버튼 1을 눌렀습니다!"")
+    elif number == 2:
+        print(""버튼 2을 눌렀습니다!"")
+    elif number == 3:
+        print(""버튼 3을 눌렀습니다!"")
+    else:
+        print(""잘못된 버튼입니다!"")",하
+함수,숫자 맞추기 게임,"1부터 100까지의 숫자 중 사용자가 생각한 숫자를 맞추는 게임을 만들어보세요. 사용자가 정답을 맞힐 때까지 컴퓨터가 ""더 큰 숫자"", ""더 작은 숫자""라고 힌트를 줍니다.
+","import random
+
+def guess_number():
+    target_number = random.randint(1, 100)
+    print(""1부터 100 사이의 숫자를 맞춰보세요!"")
+    while True:
+        guess = int(input(""숫자를 입력하세요: ""))
+        if guess < target_number:
+            print(""더 큰 숫자입니다!"")
+        elif guess > target_number:
+            print(""더 작은 숫자입니다!"")
+        else:
+            print(""정답입니다!"")
+            break",중
+함수,별 모양 그리기,"사용자가 원하는 크기의 정사각형 별 모양을 출력하는 프로그램을 작성하세요. 예를 들어, 사용자가 5를 입력하면 5x5 크기의 별 모양을 출력합니다.","def draw_square(size):
+    for i in range(size):
+        print(""*"" * size)",하
+함수,주사위 던지기,주사위를 던져서 나온 숫자를 출력하는 프로그램을 작성하세요. 주사위는 1부터 6까지의 숫자만 나오게 해야 합니다.,"import random
+
+def roll_dice():
+    return random.randint(1, 6)",하
+함수,마법의 계산기,"사용자가 입력한 두 숫자와 연산자를 받아서 계산하는 프로그램을 작성하세요. 연산자는 더하기, 빼기, 곱하기, 나누기 등을 포함합니다. 이 계산기는 마법처럼, 사용자가 입력한 연산자에 따라 다른 마법의 결과를 보여줍니다!","def magic_calculator(a, b, operator):
+    if operator == ""+"":
+        return a + b
+    elif operator == ""-"":
+        return a - b
+    elif operator == ""*"":
+        return a * b
+    elif operator == ""/"":
+        if b != 0:
+            return a / b
+        else:
+            return ""0으로 나눌 수 없습니다!""
+    else:
+        return ""알 수 없는 연산자입니다!""",중
+함수,시간 계산기,"주어진 시간(시, 분)을 더하거나 빼는 프로그램을 작성하세요. 예를 들어, 5시간 30분을 3시간 45분 더한 결과는 무엇인가요?","def add_time(hours, minutes, add_hours, add_minutes):
+    total_minutes = (hours * 60 + minutes) + (add_hours * 60 + add_minutes)
+    total_hours = total_minutes // 60
+    total_minutes = total_minutes % 60
+    return total_hours, total_minutes",중
+함수,숫자 구구단,"사용자가 입력한 숫자의 구구단을 출력하는 프로그램을 작성하세요. 예를 들어, 3을 입력하면 3단을 출력합니다.","def multiplication_table(n):
+    for i in range(1, 10):
+        print(f""{n} x {i} = {n * i}"")",하
+함수,숫자 변환 게임,"사용자가 입력한 숫자를 다른 숫자로 변환하는 게임을 만들어보세요. 숫자 1부터 10까지는 각각 다른 동물로 변환됩니다.
+
+1 -> ""고양이""
+2 -> ""강아지""
+3 -> ""토끼""
+4 -> ""호랑이""
+5 -> ""펭귄""
+6 -> ""코끼리""
+7 -> ""사자""
+8 -> ""코알라""
+9 -> ""고릴라""
+10 -> ""기린""","def number_to_animal(number):
+    animals = {
+        1: ""고양이"", 2: ""강아지"", 3: ""토끼"", 4: ""호랑이"", 
+        5: ""펭귄"", 6: ""코끼리"", 7: ""사자"", 8: ""코알라"", 
+        9: ""고릴라"", 10: ""기린""
+    }
+    return animals.get(number, ""숫자는 1부터 10까지 입력하세요!"")",중
+함수,반복되는 숫자 패턴,"주어진 숫자에서 반복되는 패턴을 찾아내는 프로그램을 작성하세요. 예를 들어, 숫자 1212는 12가 두 번 반복되는 패턴이 있습니다. 주어진 숫자에서 반복되는 패턴을 출력하세요.","def find_pattern(number):
+    str_num = str(number)
+    length = len(str_num)
+    for i in range(1, length // 2 + 1):
+        pattern = str_num[:i]
+        if str_num == pattern * (length // i):
+            return pattern
+    return ""패턴 없음""",상
+함수,미래의 동전 계산기,"미래의 동전은 오늘의 동전보다 한 단계 더 업그레이드된 기능을 가지고 있습니다! 예를 들어, 1원짜리 동전은 2원으로 바뀌고, 5원짜리 동전은 10원으로 바뀝니다. 이 계산기에서는 주어진 동전들의 합을 계산하면서 각 동전의 가치를 업그레이드해서 더해줍니다.","def upgraded_coin_sum(coins):
+    upgraded_coins = {1: 2, 5: 10, 10: 20, 50: 100, 100: 200}  # 동전 업그레이드
+    return sum(upgraded_coins.get(coin, coin) for coin in coins)
+",중
+함수,학점 계산기,"학생들이 점수를 입력합니다. 점수에 따라 학생의 학점을 평가하는 프로그램을 작성하세요. 점수에 따라 학생이 A, B, C, D, E, F 등급으로 평가됩니다.","def score_evaluation(score):
+    if score >= 90:
+        return ""A""
+    elif score >= 80:
+        return ""B""
+    elif score >= 70:
+        return ""C""
+    elif score >= 60:
+        return ""D""
+    elif score >= 50:
+        return ""E""
+    else:
+        return ""F""",중

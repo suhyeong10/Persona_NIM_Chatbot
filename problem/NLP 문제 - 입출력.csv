@@ -1,0 +1,72 @@
+섹션,주제,문제,답안,난이도
+입출력,간식 추천,"좋아하는 간식을 입력받아 ""오늘은 [간식] 어떠세요?""라고 출력하세요","snack = input(""좋아하는 간식을 입력하세요: "")
+print(f""오늘은 {snack} 어떠세요?"")",하
+입출력,더하기 계산기,두 숫자를 입력받아 그 합을 출력하세요.,"num1 = int(input(""첫 번째 숫자를 입력하세요: ""))
+num2 = int(input(""두 번째 숫자를 입력하세요: ""))
+print(f""두 숫자의 합은 {num1 + num2}입니다."")",하
+입출력,시간 계산기,"초 단위로 시간을 입력받아 몇 시간, 몇 분, 몇 초인지 계산하세요","seconds = int(input(""초 단위 시간을 입력하세요: ""))
+hours = seconds // 3600
+minutes = (seconds % 3600) // 60
+remaining_seconds = seconds % 60
+print(f""{seconds}초는 {hours}시간 {minutes}분 {remaining_seconds}초입니다."")",하
+입출력,나이 계산기,태어난 연도를 입력받아 현재 나이를 계산하세요.,"birth_year = int(input(""태어난 연도를 입력하세요: ""))
+current_year = 2024
+age = current_year - birth_year
+print(f""당신의 나이는 {age}살입니다."")",중
+입출력,영수증 계산기,사용자가 구매한 물건의 이름과 가격을 입력받아 총합을 출력하세요.,"item1 = input(""첫 번째 물건의 이름: "")
+price1 = int(input(f""{item1}의 가격: ""))
+item2 = input(""두 번째 물건의 이름: "")
+price2 = int(input(f""{item2}의 가격: ""))
+total = price1 + price2
+print(f""{item1}와 {item2}의 총합은 {total}원입니다."")",중
+입출력,날짜 입력 받기,"문제: 사용자가 ""YYYY-MM-DD"" 형식으로 날짜를 입력하면 년, 월, 일을 분리해 출력하세요.","date = input(""날짜를 'YYYY-MM-DD' 형식으로 입력하세요: "")
+year, month, day = date.split(""-"")
+print(f""년: {year}, 월: {month}, 일: {day}"")",하
+입출력,통화 환전 계산기,사용자가 원화를 입력하면 달러(1 USD = 1300 KRW)로 환전 금액을 계산하세요.,"krw = int(input(""환전할 원화를 입력하세요: ""))
+usd = krw / 1300
+print(f""{krw}원은 약 {usd:.2f}달러입니다."")",하
+입출력,간단한 시계,"몇 분 뒤의 시간을 계산하는 프로그램을 작성하세요. 현재 시각(시, 분)과 추가할 분을 입력받아 계산된 결과를 출력하세요.","current_time = input(""현재 시각을 '시 분' 형식으로 입력하세요: "")
+additional_minutes = int(input(""추가할 분을 입력하세요: ""))
+hour, minute = map(int, current_time.split())
+total_minutes = hour * 60 + minute + additional_minutes
+new_hour = (total_minutes // 60) % 24
+new_minute = total_minutes % 60
+print(new_hour, new_minute)",상
+입출력,달력 포맷 만들기,"""년-월-일"" 형식의 날짜를 입력받아 ""일/월/년"" 형식으로 바꿔 출력하세요.","date = input(""날짜를 '년-월-일' 형식으로 입력하세요: "")
+year, month, day = date.split('-')
+print(day, month, year, sep='/')",중
+입출력,화씨(Fahrenheit) ↔ 섭씨(Celsius) 변환,"섭씨 온도를 입력받아 화씨로 변환하고, 화씨 온도를 입력받아 섭씨로 변환한 결과를 각각 출력하세요.","celsius = float(input(""섭씨 온도를 입력하세요: ""))
+fahrenheit = celsius * 9 / 5 + 32
+print(fahrenheit)
+
+fahrenheit = float(input(""화씨 온도를 입력하세요: ""))
+celsius = (fahrenheit - 32) * 5 / 9
+print(celsius)",상
+입출력,책 페이지 계산기,책의 총 페이지 수와 하루 읽을 페이지 수를 입력받아 며칠이 걸릴지 계산하세요,"total_pages = int(input(""책의 총 페이지 수를 입력하세요: ""))
+pages_per_day = int(input(""하루에 읽을 페이지 수를 입력하세요: ""))
+days = -(-total_pages // pages_per_day)  # 올림 처리
+print(days)",상
+입출력,영화 상영 시간 계산기,"영화의 시작 시각(시, 분)과 상영 시간을 입력받아 끝나는 시각을 계산하세요.","start_time = input(""영화 시작 시간을 '시 분' 형식으로 입력하세요: "")
+duration = int(input(""영화 상영 시간을 분 단위로 입력하세요: ""))
+hour, minute = map(int, start_time.split())
+end_hour = (hour + (minute + duration) // 60) % 24
+end_minute = (minute + duration) % 60
+print(end_hour, end_minute)",상
+입출력,도서관 벌금 계산,반납해야 할 책의 연체 일수를 입력받아 벌금을 계산하세요. (하루당 100원),"late_days = int(input(""연체 일수를 입력하세요: ""))
+fine_per_day = 100
+total_fine = late_days * fine_per_day
+print(total_fine)",중
+입출력,MP3 재생 시간 계산,"MP3 파일의 재생 길이(분, 초)와 총 곡 수를 입력받아, 전체 재생 시간을 시, 분, 초로 출력하세요.","length_per_song = input(""곡의 길이를 '분 초' 형식으로 입력하세요: "")
+song_count = int(input(""총 곡 수를 입력하세요: ""))
+minutes, seconds = map(int, length_per_song.split())
+
+total_seconds = (minutes * 60 + seconds) * song_count
+hours = total_seconds // 3600
+minutes = (total_seconds % 3600) // 60
+seconds = total_seconds % 60
+
+print(hours, minutes, seconds)",상
+입출력,택배 무게 요금 계산,"택배 무게를 입력받아, 무게당 요금(1kg당 3000원)을 계산해 출력하세요","weight = float(input(""택배 무게를 입력하세요 (kg): ""))
+rate = 3000
+total_cost = weight * rate
+print(int(total_cost))",중

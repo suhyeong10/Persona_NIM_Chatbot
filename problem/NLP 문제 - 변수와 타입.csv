@@ -1,0 +1,61 @@
+섹션,주제,문제,답안,난이도
+변수와 타입,내 이름의 성,"변수 my_name에 자신의 이름을 넣고, 그 이름의 첫 글자를 출력해보세요.","my_name = ""민수""
+print(my_name[0])  # 첫 글자만 출력
+",하
+변수와 타입,문자열과 숫자 합치기,"변수 animal에 동물 이름을, 변수 number에 그 동물의 숫자를 저장한 후, 이 두 변수를 합쳐서 출력해보세요. 예를 들어, ""강아지 3마리"".","animal = ""강아지""
+number = 3
+print(animal + "" "" + str(number) + ""마리"")  # 문자열과 숫자 합치기
+",중
+변수와 타입,이름 바꾸기,"변수 my_name에 자신의 이름을 저장한 후, my_name을 대문자로 바꾸고 출력해보세요.","my_name = ""민수""
+print(my_name.upper())  # 대문자로 바꾸기
+",하
+변수와 타입,계산기,"변수 a와 b에 숫자를 저장한 후, a를 b로 나눈 값이 3보다 큰지 확인해보세요.","a = 9
+b = 2
+result = a / b
+",하
+변수와 타입,좋아하는 음악과 시간,"변수 favorite_song에 좋아하는 음악의 제목을, 변수 song_duration에 그 음악의 길이를 저장하고, 그 음악의 제목과 길이를 출력해보세요.","favorite_song = ""어드벤처 타임""
+song_duration = 3.5
+print(f""My favorite song is {favorite_song} and it lasts {song_duration} minutes."")
+",중
+변수와 타입,날짜를 문자열로,"변수 day에 오늘의 날짜(예: ""2024-11-14"")를 문자열로 저장하고, 그 날짜의 ""년"", ""월"", ""일""을 각각 추출하여 출력해보세","day = ""2024-11-14""
+year, month, day = day.split(""-"")  # 문자열을 '-' 기준으로 나누기
+print(f""년: {year}, 월: {month}, 일: {day}"")
+",상
+변수와 타입,전화번호 형식,"변수 phone_number에 전화번호(예: ""01012345678"")를 넣고, 그 번호를 ""010-1234-5678"" 형식으로 출력해보세요.","phone_number = ""01012345678""
+formatted_number = phone_number[:3] + ""-"" + phone_number[3:7] + ""-"" + phone_number[7:]
+print(formatted_number)
+",상
+변수와 타입,타입 확인하기,"변수 height에 자신의 키를 넣고, 그 변수의 타입을 확인해보세요.","height = 170.5
+print(type(height))
+",하
+변수와 타입,문자열 합치기,"변수 first_name에 ""김""을, last_name에 ""철수""를 넣고, 두 문자열을 합쳐서 출력해보세요","first_name = ""김""
+last_name = ""철수""
+print(first_name + last_name)
+",중
+변수와 타입,변수 타입 변환하기,"변수 num_str에 ""123""을 넣고, 이를 정수로 변환한 후 10을 더한 값을 출력해보세요.","num_str = ""123""
+num = int(num_str)  # 문자열을 정수로 변환
+print(num + 10)
+",중
+변수와 타입,숫자로 나이 계산하기,"당신은 친구에게 생일이 지난 후 몇 살이 되었는지 물어보고 싶어요. 친구의 나이는 ""12""라는 문자열로 입력되는데, 이를 숫자로 변환해 나이를 1년 더한 후 출력해 보세요.","age = ""12""
+age = int(age) + 1  # 나이를 1살 더해보자!
+print(age)
+",중
+변수와 타입,하루 일과 시간 계산하기,"하루는 24시간이죠! 8시간 동안 공부를 하고, 2시간 동안 운동을 했을 때, 그 이후 얼마나 시간이 남는지 계산해 보세요.","total_time = 24
+study_time = 8
+exercise_time = 2
+remaining_time = total_time - (study_time + exercise_time)
+print(f""남은 시간: {remaining_time}시간"")",상
+변수와 타입,택시 요금 계산하기,"택시를 타면 기본 요금은 3000원이지만, 추가로 1km당 1000원의 요금이 붙어요. 3km를 탔다면 택시 요금을 계산해 보세요.","base_fare = 3000
+extra_fare_per_km = 1000
+distance = 3
+total_fare = base_fare + (extra_fare_per_km * distance)
+print(f""택시 요금은 {total_fare}원입니다."")
+",상
+변수와 타입,배달 음식 할인 계산,"배달 음식이 25000원이지만, 10%의 할인이 있어요. 할인을 적용한 후 최종 결제 금액을 계산해 보세요.","original_price = 25000
+discount = 0.1
+final_price = original_price * (1 - discount)
+print(f""할인 후 최종 결제 금액은 {final_price}원입니다."")
+",상
+변수와 타입,타입 확인 후 출력하기,"변수 data에 10을 넣고, 그 데이터의 타입이 무엇인지 출력해 보세요.","data = 10
+print(type(data))
+",하

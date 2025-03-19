@@ -1,0 +1,143 @@
+섹션,주제,문제,답안,난이도
+함수,재귀로 나무 그리기,숫자 n을 입력받아 n층으로 이루어진 나무를 그리는 draw_tree 함수를 만들어보세요.,"def draw_tree(n, level=1):
+    if level > n:
+        return
+    print(' ' * (n - level) + '*' * (2 * level - 1))
+    draw_tree(n, level + 1)",상
+함수,숨은 단어 찾기,"find_hidden_word(sentence, start, end) 함수를 작성하세요. sentence에서 start와 end라는 단어 사이에 있는 단어를 추출해 리스트로 반환하는 함수입니다.","def find_hidden_word(sentence, start, end):
+    words = sentence.split()
+    try:
+        start_idx = words.index(start) + 1
+        end_idx = words.index(end)
+        return words[start_idx:end_idx]
+    except ValueError:
+        return []
+",상
+함수,로봇 이동 경로 추적,"2D 평면에서 로봇의 위치를 추적하는 move_robot(commands) 함수를 작성하세요. commands는 이동 명령어 문자열로 이루어져 있습니다. 'U'는 위로, 'D'는 아래로, 'L'은 왼쪽으로, 'R'은 오른쪽으로 이동을 의미합니다. 로봇의 최종 좌표를 튜플 형태로 반환하세요. 시작 위치는 (0, 0)입니다.","def move_robot(commands):
+    x, y = 0, 0
+    for command in commands:
+        if command == 'U':
+            y += 1
+        elif command == 'D':
+            y -= 1
+        elif command == 'L':
+            x -= 1
+        elif command == 'R':
+            x += 1
+    return (x, y)",중
+함수,펄스-인-버즈,"숫자 리스트를 입력받아, 3의 배수는 ""Pulse"", 5의 배수는 ""In"", 둘 다의 배수는 ""Buzz""로 변환하는 `pulse_in_buzz` 함수를 작성하세요. 숫자 리스트가 주어지면 변환된 리스트를 반환합니다.","def pulse_in_buzz(numbers):
+    result = []
+    for n in numbers:
+        if n % 3 == 0 and n % 5 == 0:
+            result.append(""Buzz"")
+        elif n % 3 == 0:
+            result.append(""Pulse"")
+        elif n % 5 == 0:
+            result.append(""In"")
+        else:
+            result.append(n)
+    return result",중
+함수,버튼 누르기,"사용자가 버튼을 누를 때마다 출력되는 문구가 달라지는 프로그램을 작성해보세요.
+
+조건:
+
+버튼이 눌릴 때마다 출력되는 문구는 아래와 같습니다.
+1번 버튼: ""버튼 1을 눌렀습니다!""
+2번 버튼: ""버튼 2을 눌렀습니다!""
+3번 버튼: ""버튼 3을 눌렀습니다!""
+그 외의 버튼을 누르면 ""잘못된 버튼입니다!""가 출력됩니다.","def press_button(number):
+    if number == 1:
+        print(""버튼 1을 눌렀습니다!"")
+    elif number == 2:
+        print(""버튼 2을 눌렀습니다!"")
+    elif number == 3:
+        print(""버튼 3을 눌렀습니다!"")
+    else:
+        print(""잘못된 버튼입니다!"")",하
+함수,숫자 맞추기 게임,"1부터 100까지의 숫자 중 사용자가 생각한 숫자를 맞추는 게임을 만들어보세요. 사용자가 정답을 맞힐 때까지 컴퓨터가 ""더 큰 숫자"", ""더 작은 숫자""라고 힌트를 줍니다.
+","import random
+
+def guess_number():
+    target_number = random.randint(1, 100)
+    print(""1부터 100 사이의 숫자를 맞춰보세요!"")
+    while True:
+        guess = int(input(""숫자를 입력하세요: ""))
+        if guess < target_number:
+            print(""더 큰 숫자입니다!"")
+        elif guess > target_number:
+            print(""더 작은 숫자입니다!"")
+        else:
+            print(""정답입니다!"")
+            break",중
+함수,별 모양 그리기,"사용자가 원하는 크기의 정사각형 별 모양을 출력하는 프로그램을 작성하세요. 예를 들어, 사용자가 5를 입력하면 5x5 크기의 별 모양을 출력합니다.","def draw_square(size):
+    for i in range(size):
+        print(""*"" * size)",하
+함수,주사위 던지기,주사위를 던져서 나온 숫자를 출력하는 프로그램을 작성하세요. 주사위는 1부터 6까지의 숫자만 나오게 해야 합니다.,"import random
+
+def roll_dice():
+    return random.randint(1, 6)",하
+함수,마법의 계산기,"사용자가 입력한 두 숫자와 연산자를 받아서 계산하는 프로그램을 작성하세요. 연산자는 더하기, 빼기, 곱하기, 나누기 등을 포함합니다. 이 계산기는 마법처럼, 사용자가 입력한 연산자에 따라 다른 마법의 결과를 보여줍니다!","def magic_calculator(a, b, operator):
+    if operator == ""+"":
+        return a + b
+    elif operator == ""-"":
+        return a - b
+    elif operator == ""*"":
+        return a * b
+    elif operator == ""/"":
+        if b != 0:
+            return a / b
+        else:
+            return ""0으로 나눌 수 없습니다!""
+    else:
+        return ""알 수 없는 연산자입니다!""",중
+함수,시간 계산기,"주어진 시간(시, 분)을 더하거나 빼는 프로그램을 작성하세요. 예를 들어, 5시간 30분을 3시간 45분 더한 결과는 무엇인가요?","def add_time(hours, minutes, add_hours, add_minutes):
+    total_minutes = (hours * 60 + minutes) + (add_hours * 60 + add_minutes)
+    total_hours = total_minutes // 60
+    total_minutes = total_minutes % 60
+    return total_hours, total_minutes",중
+함수,숫자 구구단,"사용자가 입력한 숫자의 구구단을 출력하는 프로그램을 작성하세요. 예를 들어, 3을 입력하면 3단을 출력합니다.","def multiplication_table(n):
+    for i in range(1, 10):
+        print(f""{n} x {i} = {n * i}"")",하
+함수,숫자 변환 게임,"사용자가 입력한 숫자를 다른 숫자로 변환하는 게임을 만들어보세요. 숫자 1부터 10까지는 각각 다른 동물로 변환됩니다.
+
+1 -> ""고양이""
+2 -> ""강아지""
+3 -> ""토끼""
+4 -> ""호랑이""
+5 -> ""펭귄""
+6 -> ""코끼리""
+7 -> ""사자""
+8 -> ""코알라""
+9 -> ""고릴라""
+10 -> ""기린""","def number_to_animal(number):
+    animals = {
+        1: ""고양이"", 2: ""강아지"", 3: ""토끼"", 4: ""호랑이"", 
+        5: ""펭귄"", 6: ""코끼리"", 7: ""사자"", 8: ""코알라"", 
+        9: ""고릴라"", 10: ""기린""
+    }
+    return animals.get(number, ""숫자는 1부터 10까지 입력하세요!"")",중
+함수,반복되는 숫자 패턴,"주어진 숫자에서 반복되는 패턴을 찾아내는 프로그램을 작성하세요. 예를 들어, 숫자 1212는 12가 두 번 반복되는 패턴이 있습니다. 주어진 숫자에서 반복되는 패턴을 출력하세요.","def find_pattern(number):
+    str_num = str(number)
+    length = len(str_num)
+    for i in range(1, length // 2 + 1):
+        pattern = str_num[:i]
+        if str_num == pattern * (length // i):
+            return pattern
+    return ""패턴 없음""",상
+함수,미래의 동전 계산기,"미래의 동전은 오늘의 동전보다 한 단계 더 업그레이드된 기능을 가지고 있습니다! 예를 들어, 1원짜리 동전은 2원으로 바뀌고, 5원짜리 동전은 10원으로 바뀝니다. 이 계산기에서는 주어진 동전들의 합을 계산하면서 각 동전의 가치를 업그레이드해서 더해줍니다.","def upgraded_coin_sum(coins):
+    upgraded_coins = {1: 2, 5: 10, 10: 20, 50: 100, 100: 200}  # 동전 업그레이드
+    return sum(upgraded_coins.get(coin, coin) for coin in coins)
+",중
+함수,학점 계산기,"학생들이 점수를 입력합니다. 점수에 따라 학생의 학점을 평가하는 프로그램을 작성하세요. 점수에 따라 학생이 A, B, C, D, E, F 등급으로 평가됩니다.","def score_evaluation(score):
+    if score >= 90:
+        return ""A""
+    elif score >= 80:
+        return ""B""
+    elif score >= 70:
+        return ""C""
+    elif score >= 60:
+        return ""D""
+    elif score >= 50:
+        return ""E""
+    else:
+        return ""F""",중

@@ -1,0 +1,450 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+/* 기본 설정 */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'JetBrains Mono', monospace;
+    background-color: #000; /* 어두운 배경 */
+    display: flex;
+    height: 100vh; /* 전체 화면 높이 */
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* 메인 레이아웃 */
+.main-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+/* 채팅 컨테이너 */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    width: 450px; /* 고정된 가로 크기 */
+    background-color: #1f1f1f; /* 어두운 배경 */
+    border-radius: 5px; /* 둥근 테두리 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* 그림자 */
+    overflow: hidden; /* 내용 넘침 방지 */
+}
+
+/* 상단 헤더 */
+.chat-header {
+    background-color: #2c2c2c;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 1px solid #333;
+}
+
+/* 채팅 메시지 영역 */
+.chat-box {
+    flex: 1;
+    overflow-y: auto; /* 스크롤 */
+    padding: 10px;
+    background-color: #121212;
+}
+
+/* 메시지 행 */
+.message-row {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+/* AI 메시지 */
+.message-row.ai {
+    flex-direction: row; /* 왼쪽 정렬 */
+}
+
+/* 사용자 메시지 */
+.message-row.user {
+    flex-direction: row-reverse; /* 오른쪽 정렬 */
+}
+
+/* 프로필 사진 */
+.profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 40%;
+    margin-right: 10px;
+}
+
+/* 메시지 내용 */
+.message-content {
+    display: flex;
+    flex-direction: column;
+    max-width: 70%; /* 화면 너비의 70%로 제한 */
+}
+
+/* 이름 */
+.message-name {
+    font-size: 12px;
+    color: #bbb;
+    margin-bottom: 3px;
+}
+
+/* 메시지 */
+.message {
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+    word-wrap: break-word; /* 긴 단어 줄바꿈 */
+}
+
+/* AI 메시지 말풍선 */
+.message-row.ai .message {
+    background-color: #3a3a3a;
+    color: #fff;
+}
+
+/* 사용자 메시지 말풍선 */
+.message-row.user .message {
+    background-color: #ffe600;
+    color: #000;
+}
+
+/* 입력창 */
+.chat-input {
+    display: flex;
+    padding: 10px;
+    background-color: #2c2c2c;
+    border-top: 1px solid #333;
+}
+
+/* 입력창 스타일 수정 */
+.input-field {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+    margin-right: 10px;
+    font-size: 14px;
+    resize: none;
+    overflow-y: hidden;
+    max-height: 100px;
+    line-height: 1.5;
+    height: auto; /* 높이 자동 조절 */
+}
+
+.input-field::placeholder {
+    color: #aaa;
+}
+
+/* 전송 버튼 */
+.send-btn {
+    padding: 10px 15px;
+    background-color: #ffe600;
+    color: #000000;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.send-btn:hover {
+    background-color: #ffe600;
+}
+
+pre, code {
+    background-color: #000; /* 배경색을 검정색으로 설정 */
+    color: #dcdcdc; /* 텍스트 색상 */
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    line-height: 1.6;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+    display: block;
+    margin: 10px 0;
+}
+
+/* 로딩 애니메이션 */
+.loading-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20px; /* 말풍선 내부 높이 */
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    margin: 0 3px;
+    background-color: #ccc;
+    border-radius: 50%;
+    animation: bounce 1.5s infinite ease-in-out;
+}
+
+.dot:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.dot:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.dot:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+/* 점의 위아래 이동 애니메이션 */
+@keyframes bounce {
+    0%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Playground 영역 */
+.playground-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #1e1e1e;
+    color: #fff;
+    padding: 10px;
+    overflow: hidden; /* 자식 요소의 넘침을 숨김 */
+}
+
+.playground-header {
+    background-color: #2c2c2c;
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.playground-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0; /* 추가 */
+}
+
+/* 코드 에디터 스타일 */
+.code-editor {
+    font-family: 'JetBrains Mono', monospace;
+    flex: 7; /* 70% */
+    border: 1px solid #333;
+    border-radius: 5px;
+    overflow: hidden; /* 내부 요소의 넘침을 숨김 */
+    display: flex;
+    flex-direction: column;
+    min-height: 0; /* 추가 */
+}
+
+.CodeMirror {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 15px; /* 적당한 크기 설정 */
+    line-height: 1.6; /* 코드 줄 간격 */
+}
+
+.CodeMirror pre {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.code-editor .CodeMirror {
+    flex: 1;
+}
+
+/* 실행 버튼 스타일 */
+.run-btn {
+    padding: 10px;
+    background-color: #ffe600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #000;
+    margin: 10px 0;
+    align-self: center;
+}
+
+/* 코드 출력 컨테이너 */
+.code-output-container {
+    flex: 3; /* 30% */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* 자식 요소의 넘침을 숨김 */
+    min-height: 0; /* 추가 */
+}
+
+/* 코드 출력 스타일 */
+.code-output {
+    flex: 1;
+    background-color: #272822; /* Monokai 테마와 어울리는 배경색 */
+    color: #f8f8f2;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-y: auto; /* 내용이 넘칠 경우 세로 스크롤바 표시 */
+    min-height: 0; /* 추가 */
+}
+
+
+pre, code {
+    background-color: #000; /* 배경색을 검정색으로 설정 */
+    color: #dcdcdc; /* 텍스트 색상 */
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+    display: block;
+    margin: 10px 0;
+}
+
+/* 로딩 애니메이션 */
+.loading-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20px; /* 말풍선 내부 높이 */
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    margin: 0 3px;
+    background-color: #ccc;
+    border-radius: 50%;
+    animation: bounce 1.5s infinite ease-in-out;
+}
+
+.dot:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.dot:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.dot:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+/* 점의 위아래 이동 애니메이션 */
+@keyframes bounce {
+    0%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Playground 영역 */
+.playground-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #1e1e1e;
+    color: #fff;
+    padding: 10px;
+    overflow: hidden; /* 자식 요소의 넘침을 숨김 */
+}
+
+.playground-header {
+    background-color: #2c2c2c;
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.playground-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0; /* 추가 */
+}
+
+/* 코드 에디터 스타일 */
+.code-editor {
+    flex: 7; /* 70% */
+    border: 1px solid #333;
+    border-radius: 5px;
+    overflow: hidden; /* 내부 요소의 넘침을 숨김 */
+    display: flex;
+    flex-direction: column;
+    min-height: 0; /* 추가 */
+}
+
+.code-editor .CodeMirror {
+    flex: 1;
+}
+
+/* 버튼 중앙 정렬 */
+.button-container {
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    margin-top: 15px; /* 위쪽 간격 */
+    gap: 10px; /* 버튼 사이 간격 */
+}
+
+/* Run Code 버튼 (초록색) */
+.run-btn {
+    padding: 10px 20px;
+    background-color: #28a745; /* 초록색 */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+}
+
+.run-btn:hover {
+    background-color: #218838; /* 더 어두운 초록색 */
+}
+
+/* Submit Code 버튼 (파란색) */
+.submit-btn {
+    padding: 10px 20px;
+    background-color: #007bff; /* 파란색 */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3; /* 더 어두운 파란색 */
+}
+
+/* 코드 출력 컨테이너 */
+.code-output-container {
+    flex: 3; /* 30% */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* 자식 요소의 넘침을 숨김 */
+    min-height: 0; /* 추가 */
+}
+
+/* 코드 출력 스타일 */
+.code-output {
+    flex: 1;
+    background-color: #272822; /* Monokai 테마와 어울리는 배경색 */
+    color: #f8f8f2;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-y: auto; /* 내용이 넘칠 경우 세로 스크롤바 표시 */
+    min-height: 0; /* 추가 */
+}

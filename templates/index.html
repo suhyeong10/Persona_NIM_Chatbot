@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Persona Chat with Playground</title>
+    
+    <!-- Google Fonts: JetBrains Mono -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- 기존 CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    <!-- Highlight.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+
+    <!-- CodeMirror CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+    <!-- CodeMirror Monokai 테마 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/monokai.min.css">
+    
+    <style>
+        /* JetBrains Mono 적용 */
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 18px; /* 기본 폰트 크기 */
+        }
+        .chat-box, .code-editor, .code-output, .input-field {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        h1, .chat-header {
+            font-size: 24px; /* 헤더에 큰 폰트 크기 */
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- 기존 채팅 영역 -->
+        <div class="chat-container">
+            <div class="chat-header">
+                Persona Chat
+            </div>
+            <div id="chat-box" class="chat-box"></div>
+            <div class="chat-input">
+                <textarea id="user-input" class="input-field" placeholder="메시지를 입력하세요..." rows="1"></textarea>
+                <button id="send-btn" class="send-btn">전송</button>
+            </div>
+        </div>
+
+        <!-- Playground 영역 -->
+        <div class="playground-container">
+            <div class="playground-header">Playground</div>
+            <!-- 코드 에디터와 출력 영역을 감싸는 컨테이너 -->
+            <div class="playground-content">
+                <div id="code-editor" class="code-editor"></div>
+                <!-- 추가된 버튼 그룹 -->
+                <div class="button-container">
+                    <button id="run-code-btn" class="run-btn">▶️ Run Code</button>
+                    <button id="submit-code-btn" class="submit-btn">✅ Submit Code</button>
+                </div>
+                <div class="code-output-container">
+                    <pre id="code-output" class="code-output"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 기존 스크립트 및 라이브러리 -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <!-- Highlight.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>
+        hljs.highlightAll();
+    </script>
+    
+    <!-- CodeMirror JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+    <!-- CodeMirror 언어 모드 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/python/python.min.js"></script>
+    <!-- CodeMirror autoCloseBrackets addon -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/addon/edit/closebrackets.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+        };
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</body>
+</html>

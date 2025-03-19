@@ -1,0 +1,170 @@
+섹션,주제,문제,답안,난이도
+조건문,커피 머신,"커피 가격(4000원)을 입력받아, 지불 금액이 부족하면 부족한 금액을 출력하고, 충분하면 거스름돈을 출력하세요.","coffee_price = 4000
+money = int(input(""지불 금액을 입력하세요: ""))
+
+if money < coffee_price:
+    print(f""{coffee_price - money}원이 부족합니다."")
+else:
+    print(f""거스름돈: {money - coffee_price}원"")",하
+조건문,자동차 속도 경고,"현재 자동차 속도를 입력받아, 60km/h 이상일 경우 ""과속입니다!""를 출력하세요.","speed = int(input(""현재 속도를 입력하세요 (km/h): ""))
+
+if speed >= 60:
+    print(""과속입니다!"")
+else:
+    print(""안전 속도입니다."")",하
+조건문,영화 관람 등급 검사,"사용자의 나이를 입력받아, 15세 이상이면 ""관람 가능합니다!""를 출력하고, 그렇지 않으면 ""관람 불가입니다!""를 출력하세요","age = int(input(""나이를 입력하세요: ""))
+
+if age >= 15:
+    print(""관람 가능합니다!"")
+else:
+    print(""관람 불가입니다!"")",하
+조건문,아이돌 팬덤 이름 맞히기,"입력받은 아이돌 이름에 따라 팬덤 이름을 출력하세요.
+(예: ""BTS"" → ""아미"", ""BLACKPINK"" → ""블링크"", 그 외 → ""모르겠어요!"")","idol = input(""아이돌 이름을 입력하세요: "")
+
+if idol == ""BTS"":
+    print(""팬덤 이름: 아미"")
+elif idol == ""BLACKPINK"":
+    print(""팬덤 이름: 블링크"")
+else:
+    print(""모르겠어요!"")
+",하
+조건문,계절 판별기,"월을 입력받아, ""봄(35)"", ""여름(68)"", ""가을(9~11)"", ""겨울(12, 1, 2)"" 중 해당 계절을 출력하세요.","month = int(input(""월을 입력하세요 (1~12): ""))
+
+if month in [3, 4, 5]:
+    print(""봄"")
+elif month in [6, 7, 8]:
+    print(""여름"")
+elif month in [9, 10, 11]:
+    print(""가을"")
+elif month in [12, 1, 2]:
+    print(""겨울"")
+else:
+    print(""잘못된 입력입니다!"")",중
+조건문,오락실 게임 이용 제한,"나이를 입력받아, 10세 미만이면 ""사용 불가!"", 10세 이상이면 ""환영합니다!""를 출력하세요.","age = int(input(""나이를 입력하세요: ""))
+
+if age < 10:
+    print(""사용 불가!"")
+else:
+    print(""환영합니다!"")",하
+조건문,주차 요금 계산기,"주차 시간을 입력받아 2시간 이내는 5000원, 이후에는 1시간당 1000원을 추가 계산하세요.","parking_time = int(input(""주차 시간을 입력하세요 (시간): ""))
+
+if parking_time <= 2:
+    fee = 5000
+else:
+    fee = 5000 + (parking_time - 2) * 1000
+
+print(f""주차 요금: {fee}원"")",중
+조건문,애완동물 분류기,"동물 이름을 입력받아 애완동물인지 아닌지를 출력하세요.
+""강아지"", ""고양이"" → ""이건 애완동물이에요!""
+그 외 → ""이건 잘 모르겠는데요?""","pet = input(""동물 이름을 입력하세요: "")
+
+if pet in [""강아지"", ""고양이""]:
+    print(""이건 애완동물이에요!"")
+else:
+    print(""이건 잘 모르겠는데요?"")",중
+조건문,부장님 드립 체크기,"부장님이 한 말을 입력받아, 끝에 ""ㅋㅋ""가 붙어 있으면 ""재밌습니다, 부장님!"" 출력.
+그렇지 않으면 ""..."" 출력.","comment = input(""부장님의 말을 입력하세요: "")
+
+if comment.endswith(""ㅋㅋ""):
+    print(""재밌습니다, 부장님!"")
+else:
+    print(""..."")
+",중
+조건문,스마트 냉장고,"냉장고에 있는 음식을 입력받아 ""우유"", ""계란"", ""치즈"" 중 하나면 ""냉장고에 있습니다!"" 출력.
+그 외에는 ""냉장고에 없습니다!"" 출력.","food = input(""냉장고에 있는 음식을 입력하세요: "")
+
+if food in [""우유"", ""계란"", ""치즈""]:
+    print(""냉장고에 있습니다!"")
+else:
+    print(""냉장고에 없습니다!"")",중
+조건문,영화관 할인 시스템,"영화표 가격은 기본적으로 12,000원이다.
+- 나이가 60세 이상이면 50% 할인.
+- 학생증을 소지한 학생이면 30% 할인.
+- 생일에 영화를 보면 20% 추가 할인.
+- 위 조건들을 모두 적용하여 최종 금액을 출력하는 프로그램을 작성하세요.
+(단, 중복 할인 가능)","age = int(input(""나이를 입력하세요: ""))
+is_student = input(""학생증이 있나요? (예/아니오): "")
+is_birthday = input(""오늘이 생일인가요? (예/아니오): "")
+
+price = 12000
+
+if age >= 60:
+    price *= 0.5
+if is_student == ""예"":
+    price *= 0.7
+if is_birthday == ""예"":
+    price *= 0.8
+
+print(f""최종 영화표 가격은 {int(price)}원입니다."")",상
+조건문,수학 퀴즈 자동 채점기,"사용자로부터 세 가지 수학 문제의 정답을 입력받는다.
+- 정답이 모두 맞으면 ""만점!"" 출력.
+- 두 개만 맞으면 ""잘했어요!""
+- 하나만 맞으면 ""더 노력하세요!""
+- 아무것도 맞지 않으면 ""공부를 좀 해야겠네요..."" 출력.","correct_answers = [5, 12, 20]  # 정답 리스트
+score = 0
+
+answer1 = int(input(""문제 1의 정답은? ""))
+if answer1 == correct_answers[0]:
+    score += 1
+
+answer2 = int(input(""문제 2의 정답은? ""))
+if answer2 == correct_answers[1]:
+    score += 1
+
+answer3 = int(input(""문제 3의 정답은? ""))
+if answer3 == correct_answers[2]:
+    score += 1
+
+if score == 3:
+    print(""만점!"")
+elif score == 2:
+    print(""잘했어요!"")
+elif score == 1:
+    print(""더 노력하세요!"")
+else:
+    print(""공부를 좀 해야겠네요..."")",상
+조건문,다중 언어 번역기,"사용자로부터 언어 코드를 입력받아 해당 인사말을 출력하세요.
+1. ""ko"" → ""안녕하세요!""
+2. ""en"" → ""Hello!""
+3. ""es"" → ""¡Hola!""
+4. ""fr"" → ""Bonjour!""
+5. 다른 언어 코드 → ""죄송합니다, 지원하지 않는 언어입니다.""","language_code = input(""언어 코드를 입력하세요 (ko/en/es/fr): "")
+
+if language_code == ""ko"":
+    print(""안녕하세요!"")
+elif language_code == ""en"":
+    print(""Hello!"")
+elif language_code == ""es"":
+    print(""¡Hola!"")
+elif language_code == ""fr"":
+    print(""Bonjour!"")
+else:
+    print(""죄송합니다, 지원하지 않는 언어입니다."")
+",상
+조건문,급여 계산 프로그램,"기본 시급은 10,000원.
+8시간을 초과한 근무 시간은 1.5배의 시급을 적용.
+최종 급여를 출력하는 프로그램을 작성하세요.","hours_worked = int(input(""근무 시간을 입력하세요: ""))
+base_rate = 10000
+
+if hours_worked > 8:
+    overtime = hours_worked - 8
+    salary = (8 * base_rate) + (overtime * base_rate * 1.5)
+else:
+    salary = hours_worked * base_rate
+
+print(f""총 급여는 {int(salary)}원입니다."")",상
+조건문,시간차 계산기,"두 개의 시간을 24시간 형식으로 입력받아, 두 시간 사이의 차이를 계산하여 출력하세요.
+(예: 14:00과 16:30 입력 시, ""2시간 30분 차이입니다."")","start = input(""시작 시간을 입력하세요 (HH:MM): "")
+end = input(""종료 시간을 입력하세요 (HH:MM): "")
+
+start_hour, start_minute = map(int, start.split("":""))
+end_hour, end_minute = map(int, end.split("":""))
+
+start_total = start_hour * 60 + start_minute
+end_total = end_hour * 60 + end_minute
+
+diff = abs(end_total - start_total)
+hours = diff // 60
+minutes = diff % 60
+
+print(f""{hours}시간 {minutes}분 차이입니다."")",상
