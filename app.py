@@ -21,13 +21,8 @@ from langchain_core.prompts import ChatPromptTemplate, PromptTemplate
 from langchain_core.output_parsers import JsonOutputParser, StrOutputParser
 from pydantic import BaseModel, Field
 
-# from langchain_openai import ChatOpenAI
 from langchain_nvidia_ai_endpoints import ChatNVIDIA
 from langchain_huggingface import HuggingFaceEmbeddings
-
-load_dotenv()
-os.environ['OPENAI_API_KEY'] = os.getenv("OPENAI_API_KEY")
-os.environ['NVIDIA_API_KEY'] = os.getenv("NVIDIA_API_KEY")
 os.makedirs('database', exist_ok=True)
 
 CHAR_PROMPT = ChatPromptTemplate.from_messages(
@@ -271,7 +266,7 @@ def get_response(query, chain):
 
 llm = ChatNVIDIA(
     model="google/gemma-3-27b-it",
-    api_key='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',
+    api_key='your-api-key',
     temperature=0.7,
     top_p=0.7,
     max_tokens=512,
